@@ -8,14 +8,9 @@ class DaggerDependenciesPlugin : Plugin<Project> {
 
     override fun apply(project: Project): Unit = with(Dependencies){
         project.dependencies.apply {
-            add(IMPLEMENTATION, "com.google.dagger:dagger:$dagger")
-            add(KAPT, "com.google.dagger:dagger-compiler:$dagger")
-            add(KAPT, "com.google.dagger:dagger-android-processor:$dagger")
+            add(DependencyTypes.implementation, "com.google.dagger:dagger:$dagger")
+            add(DependencyTypes.kapt, "com.google.dagger:dagger-compiler:$dagger")
+            add(DependencyTypes.kapt, "com.google.dagger:dagger-android-processor:$dagger")
         }
-    }
-
-    companion object {
-        private const val IMPLEMENTATION = "implementation"
-        private const val KAPT = "kapt"
     }
 }
