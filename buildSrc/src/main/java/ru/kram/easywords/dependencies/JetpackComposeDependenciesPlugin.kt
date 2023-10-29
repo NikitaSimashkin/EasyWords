@@ -18,7 +18,7 @@ class JetpackComposeDependenciesPlugin : Plugin<Project> {
             add(DependencyTypes.implementation, "androidx.navigation:navigation-compose:$navigationCompose")
 
             add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-tooling:$compose")
-            add(DependencyTypes.androidTestImplementation, "androidx.compose.ui:ui-test-junit4:$compose")
+            add(DependencyTypes.androidTestmplementation, "androidx.compose.ui:ui-test-junit4:$compose")
             add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-tooling:$compose")
             add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-test-manifest:$compose")
         }
