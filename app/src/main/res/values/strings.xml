@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">EasyWords</string>
+
+    <string name="main_icon_title">Main</string>
+    <string name="dictionary_icon_title">Dictionary</string>
+    <string name="settings_icon_title">Settings</string>
+    <string name="search_icon_title">Settings</string>
+
+    <string name="main_screen_title">Main</string>
+    <string name="dictionary_screen_title">Dictionary</string>
+    <string name="settings_screen_title">Settings</string>
+
+    <string name="find_word_hint">Find a word</string>
+</resources>
