@@ -20,7 +20,7 @@ class JetpackComposeDependenciesPlugin : Plugin<Project> {
             add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-tooling:$compose")
             add(DependencyTypes.androidTestImplementation, "androidx.compose.ui:ui-test-junit4:$compose")
             add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-tooling:$compose")
-            add(DependencyTypes.debugImfplementation, "androidx.compose.ui:ui-test-manifest:$compose")
+            add(DependencyTypes.debugImplementation, "androidx.compose.ui:ui-test-manifest:$compose")
         }
     }
 }
