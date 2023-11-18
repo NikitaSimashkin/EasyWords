@@ -14,7 +14,7 @@
         android:theme="@style/Theme.EasyWords"
         tools:targetApi="31">
         <activity
-            android:name=".basescreen.BaseScreenActivity"
+            android:name=".main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.EasyWords">

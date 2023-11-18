@@ -1,17 +1,21 @@
 package ru.kram.easywords.carder
 
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import ru.kram.easywords.base.context.EasyWordsContext
+import ru.kram.easywords.base.log.AndroidEasyLogger
 
-import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class ExampleUnitTest {
 	@Test
 	fun addition_isCorrect() {
-		assertEquals(4, 2 + 2)
+		val words = (
+				"Butt\n" +
+				"Turn into\n")
+			.split("\n")
+			.map { it.trim() }
+
+		runBlocking {
+			WorstCarder(EasyWordsContext((AndroidEasyLogger()))).writeCardToFile(words)
+		}
 	}
 }

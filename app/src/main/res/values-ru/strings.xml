@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">EasyWords</string>
 
-    <string name="main_icon_title">Главная</string>
+    <string name="learn_icon_title">Учить</string>
     <string name="dictionary_icon_title">Словарь</string>
     <string name="settings_icon_title">Настройки</string>
     <string name="search_icon_title">Поиск</string>
 
-    <string name="main_screen_title">Главная</string>
+    <string name="learn_screen_title">Учить</string>
     <string name="dictionary_screen_title">Словарь</string>
     <string name="settings_screen_title">Настройки</string>
 

@@ -33,11 +33,17 @@ android {
 }
 
 dependencies {
+	implementation(project(":common:base"))
+	implementation(project(":exampler"))
+	implementation(project(":translator"))
 
-	implementation("androidx.core:core-ktx:1.9.0")
-	implementation("androidx.appcompat:appcompat:1.6.1")
-	implementation("com.google.android.material:material:1.9.0")
-	testImplementation("junit:junit:4.13.2")
-	androidTestImplementation("androidx.test.ext:junit:1.1.5")
-	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+	with(Dependencies) {
+		implementation("androidx.core:core-ktx:$androidCore")
+		implementation("androidx.appcompat:appcompat:$appCompat")
+		testImplementation("junit:junit:$junit")
+		androidTestImplementation("androidx.test.ext:junit:$androidJunit")
+
+		implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesCore")
+		implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroid")
+	}
 }

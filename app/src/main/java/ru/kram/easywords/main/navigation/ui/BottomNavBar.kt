@@ -1,4 +1,4 @@
-package ru.kram.easywords.navigation.ui
+package ru.kram.easywords.main.navigation.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,21 +14,20 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.kram.easywords.common.icon.ColoredImageVectorWrapper
 import ru.kram.easywords.ui.theme.colors
+import ru.kram.easywords.ui.theme.typography
 
 @Composable
 fun BottomNavBar(
-	items: List<BottomNavDataItem>,
+	items: List<BottomNavDataUiItem>,
 	modifier: Modifier = Modifier,
 	textModifier: Modifier = Modifier,
 	imageModifier: Modifier = Modifier,
@@ -56,7 +55,7 @@ fun BottomNavBar(
 
 @Composable
 fun BottomNavItem(
-	item: BottomNavDataItem,
+	item: BottomNavDataUiItem,
 	modifier: Modifier = Modifier,
 	imageModifier: Modifier = Modifier,
 	textModifier: Modifier = Modifier,
@@ -77,7 +76,8 @@ fun BottomNavItem(
 		Text(
 			text = item.text,
 			modifier = textModifier.align(Alignment.CenterHorizontally),
-			style = item.textStyle,
+			style = typography.bodyMedium,
+			color = item.icon.color
 		)
 	}
 }
@@ -87,25 +87,19 @@ fun BottomNavItem(
 fun BottomNavBarPreview() {
 
 	val items = listOf(
-		BottomNavDataItem(
+		BottomNavDataUiItem(
 			icon = ColoredImageVectorWrapper(Icons.Default.Home, Color.Unspecified, "Home"),
 			text = "Home",
-			textStyle = TextStyle.Default,
-			contentDescription =  "",
 			clickAction = {}
 		),
-		BottomNavDataItem(
+		BottomNavDataUiItem(
 			icon = ColoredImageVectorWrapper(Icons.Outlined.List, Color.Unspecified, "List"),
 			text = "List",
-			textStyle = TextStyle.Default,
-			contentDescription =  "",
 			clickAction = {}
 		),
-		BottomNavDataItem(
+		BottomNavDataUiItem(
 			icon = ColoredImageVectorWrapper(Icons.Default.Settings, Color.Unspecified, "Settings"),
 			text = "Settings",
-			textStyle = TextStyle.Default,
-			contentDescription =  "",
 			clickAction = {}
 		)
 	)

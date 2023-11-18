@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-	namespace = "ru.kram.translate_provider"
+	namespace = "ru.kram.easywords.translator"
 	compileSdk = 33
 
 	defaultConfig {
@@ -35,8 +35,7 @@ android {
 
 dependencies {
 
-	implementation(project(":util"))
-
+	implementation(project(":common:base"))
 	implementation("com.amazonaws:aws-android-sdk-translate:${Dependencies.translateAmazon}")
 
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Dependencies.coroutinesCore}")
