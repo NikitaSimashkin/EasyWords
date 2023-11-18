@@ -1,4 +1,4 @@
-package ru.kram.easywords.navigation
+package ru.kram.easywords.main.navigation
 
 sealed class BottomNavScreen(val route: String) {
 

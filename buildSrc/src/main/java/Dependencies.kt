@@ -23,7 +23,16 @@ object Dependencies {
 	const val materialCompose = "1.1.2"
     const val activityCompose = "1.3.1"
     const val constraintLayoutCompose = "1.0.1"
-    const val navigationCompose = "2.4.0-alpha07"
+    const val navigationCompose = "2.7.5"
 
     const val viewModel = "2.4.0"
+
+	const val translateAmazon = "2.28.0"
+
+	const val coroutinesCore = "1.3.9"
+	const val coroutinesAndroid = "1.3.9"
+
+	const val ktor = "2.3.6"
+	const val kodein = "7.21.0"
+	const val jsoup = "1.14.3"
 }

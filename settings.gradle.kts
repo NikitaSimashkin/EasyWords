@@ -16,4 +16,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "EasyWords"
 include(":app")
- 
+include(":translator")
+include(":exampler")
+include(":carder")
+
+apply(from = "common/common-settings.gradle.kts")

@@ -1,4 +1,4 @@
-package ru.kram.easywords.basescreen.ui
+package ru.kram.easywords.main.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -8,24 +8,30 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import ru.kram.easywords.R
-import ru.kram.easywords.basescreen.ui.model.BaseScreenUiState
 import ru.kram.easywords.common.icon.icons
-import ru.kram.easywords.navigation.ui.BottomNavBar
-import ru.kram.easywords.navigation.ui.BottomNavDataItem
+import ru.kram.easywords.main.MainViewModel
+import ru.kram.easywords.main.navigation.ui.BottomNavBar
+import ru.kram.easywords.main.navigation.ui.BottomNavDataUiItem
+import ru.kram.easywords.main.ui.model.MainScreenBottomEvent
+import ru.kram.easywords.main.ui.model.MainScreenState
 import ru.kram.easywords.ui.theme.colors
 import ru.kram.easywords.ui.theme.dimens
-import ru.kram.easywords.ui.theme.typography
 
 @Composable
-fun BaseScreen(
-	data: BaseScreenUiState,
+fun MainScreen(
+	viewModel: MainViewModel,
 	content: @Composable () -> Unit = {}
 ) {
+	val mainScreenData = viewModel.mainScreenState.collectAsState()
 
 	Column(modifier = Modifier.fillMaxSize()) {
 
@@ -34,39 +40,29 @@ fun BaseScreen(
 		}
 
 		Box {
-			val mainContentDescription = stringResource(id = R.string.main_screen_title)
-			val dictionaryContentDescription = stringResource(id = R.string.dictionary_screen_title)
-			val settingsContentDescription = stringResource(id = R.string.settings_screen_title)
 			val items = listOf(
-				BottomNavDataItem(
-					icon = if (data == BaseScreenUiState.MainSelected) icons.mainSelected else icons.mainUnselected,
-					text = mainContentDescription,
-					textStyle = typography.bodyMedium,
-					contentDescription = mainContentDescription,
-					clickAction = {}
+				BottomNavDataUiItem(
+					icon = if (mainScreenData.value == MainScreenState.LearnSelected) icons.learnSelected else icons.learnUnselected,
+					text = stringResource(id = R.string.learn_screen_title),
+					clickAction = { viewModel.handleEvent(MainScreenBottomEvent.ClickLearn) }
 				),
-				BottomNavDataItem(
-					icon = if (data == BaseScreenUiState.DictionarySelected) icons.dictionarySelected else icons.dictionaryUnselected,
-					text = dictionaryContentDescription,
-					textStyle = typography.bodyMedium,
-					contentDescription = dictionaryContentDescription,
-					clickAction = {}
+				BottomNavDataUiItem(
+					icon = if (mainScreenData.value == MainScreenState.DictionarySelected) icons.dictionarySelected else icons.dictionaryUnselected,
+					text = stringResource(id = R.string.dictionary_screen_title),
+					clickAction = { viewModel.handleEvent(MainScreenBottomEvent.ClickDictionary) }
 				),
-				BottomNavDataItem(
-					icon = if (data == BaseScreenUiState.SettingsSelected) icons.settingsSelected else icons.settingsUnselected,
-					text = settingsContentDescription,
-					textStyle = typography.bodyMedium,
-					contentDescription = settingsContentDescription,
-					clickAction = {}
+				BottomNavDataUiItem(
+					icon = if (mainScreenData.value == MainScreenState.SettingsSelected) icons.settingsSelected else icons.settingsUnselected,
+					text = stringResource(id = R.string.settings_screen_title),
+					clickAction = { viewModel.handleEvent(MainScreenBottomEvent.ClickSettings) }
 				)
 			)
-
 			BottomNavBar(
 				modifier = Modifier
 					.fillMaxWidth()
 					.height(dimens.bottomNavHeight)
 					.background(colors.primary),
-				imageModifier = Modifier.size(dimens.baseIconSize),
+				imageModifier = Modifier.size(dimens.bigIconSize),
 				textModifier = Modifier,
 				items = items
 			)
@@ -79,28 +75,22 @@ fun BaseScreen(
 fun BaseScreenPreview() {
 
 	val items = listOf(
-		BottomNavDataItem(
-			icon = icons.mainUnselected,
+		BottomNavDataUiItem(
+			icon = icons.learnUnselected,
 			text = "Main",
-			textStyle = typography.bodyMedium,
-			contentDescription = "Main",
 			clickAction = {}
 		),
-		BottomNavDataItem(
+		BottomNavDataUiItem(
 			icon = icons.dictionaryUnselected,
 			text = "Dictionary",
-			textStyle = typography.bodyMedium,
-			contentDescription = "Dictionary",
 			clickAction = {}
 		),
-		BottomNavDataItem(
+		BottomNavDataUiItem(
 			icon = icons.settingsUnselected,
 			text = "Settings",
-			textStyle = typography.bodyMedium,
-			contentDescription = "Settings",
 			clickAction = {}
 		)
 	)
 
-	BaseScreen(BaseScreenUiState.MainSelected)
+	MainScreen(MainViewModel(rememberNavController()))
 }

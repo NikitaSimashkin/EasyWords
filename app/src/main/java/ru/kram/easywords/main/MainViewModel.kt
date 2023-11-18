@@ -1,31 +1,44 @@
-package ru.kram.easywords.basescreen
+package ru.kram.easywords.main
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import ru.kram.easywords.basescreen.ui.model.BaseScreenUiState
-import ru.kram.easywords.navigation.BottomNavScreen
+import ru.kram.easywords.common.base.event.EventHandler
+import ru.kram.easywords.main.ui.model.MainScreenBottomEvent
+import ru.kram.easywords.main.ui.model.MainScreenState
+import ru.kram.easywords.main.navigation.BottomNavScreen
 
-class BaseScreenViewModel(
+class MainViewModel(
 	private val navController: NavController
-): ViewModel() {
+): ViewModel(), EventHandler<MainScreenBottomEvent> {
 
-	private val internalBaseScreenUiState = MutableStateFlow<BaseScreenUiState>(BaseScreenUiState.MainSelected)
-	val baseScreenUiState: StateFlow<BaseScreenUiState> = internalBaseScreenUiState
+	private val internalMainScreenState = MutableStateFlow<MainScreenState>(MainScreenState.LearnSelected)
+	val mainScreenState: StateFlow<MainScreenState> = internalMainScreenState
 
-	private fun onClickMain() {
-		internalBaseScreenUiState.value = BaseScreenUiState.MainSelected
+	override fun handleEvent(event: MainScreenBottomEvent) {
+		when (event) {
+			MainScreenBottomEvent.ClickLearn -> onClickLearn()
+			MainScreenBottomEvent.ClickDictionary -> onClickDictionary()
+			MainScreenBottomEvent.ClickSettings -> onClickSettings()
+		}
+	}
+
+	private fun onClickLearn() {
+		if (internalMainScreenState.value == MainScreenState.LearnSelected) return
+		internalMainScreenState.value = MainScreenState.LearnSelected
 		navController.navigate(BottomNavScreen.Learn.route)
 	}
 
 	private fun onClickDictionary() {
-		internalBaseScreenUiState.value = BaseScreenUiState.DictionarySelected
+		if (internalMainScreenState.value == MainScreenState.DictionarySelected) return
+		internalMainScreenState.value = MainScreenState.DictionarySelected
 		navController.navigate(BottomNavScreen.Dictionary.route)
 	}
 
 	private fun onClickSettings() {
-		internalBaseScreenUiState.value = BaseScreenUiState.SettingsSelected
+		if (internalMainScreenState.value == MainScreenState.SettingsSelected) return
+		internalMainScreenState.value = MainScreenState.SettingsSelected
 		navController.navigate(BottomNavScreen.Settings.route)
 	}
 }

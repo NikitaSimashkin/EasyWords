@@ -66,6 +66,7 @@ android {
 
 dependencies {
 
+	implementation(project(":translator"))
 	with(Dependencies) {
 		implementation("androidx.core:core-ktx:$androidCore")
 		implementation("androidx.appcompat:appcompat:$appCompat")
